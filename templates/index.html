@@ -78,7 +78,8 @@
                 <div class="card shadow-sm">
                     <div class="popup">
                         <div class="info">
-                            <img src="img/info.png" alt="info" title="info" onclick="openPopup()">
+                            <img src="{{ url_for('static', filename='img/info.png') }}" alt="info" title="info" onclick="openPopup()">
+
                         </div>
                         <div id="popup_page">
                             <p style="text-align: right; cursor: pointer;" onclick="closePopup()">X</p>
@@ -86,14 +87,14 @@
                             <h3>설명</h3>
                             <p>이 프로그램은 물체 이미지를 넣으면 그 물체를 어디에다가 분리를 해야하는지 알려주는 프로그램입니다. 이미지 파일을 업로드하고 '이미지를 분석하겠다 핑'을 클릭하면 어디에 분리해야 하는지 알려줍니다!</p>
                             <div class="popup_img">
-                                <img src="img/싹싹핑.png" alt="싹싹핑" title="싹싹핑">
+                                <img src="{{ url_for('static', filename='img/싹싹핑.png') }}" alt="싹싹핑" title="싹싹핑">
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <h1 class="card-title text-center mb-4">분리핑</h1>
                         <div class="icon">
-                            <img src="img/icon1.jpg" alt="icon" title="icon">
+                            <img src="{{ url_for('static', filename='img/icon1.jpg') }}" alt="icon" title="icon">
                         </div>
                         <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
