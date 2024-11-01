@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보라색 냉면먹는 꿀벌</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+    <style>
+        .card {
+            margin-top: 100px;
+        }
+        .card-body {
+            padding-top: 50px;
+        }
+        .info img {
+            width: 50px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        
+        .icon {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .icon img {
+            width: 50%;
+        }
+        .mb-3 label {
+            font-weight: bold;
+        }        
+        .popup input {
+            display: none;
+        }
+        .popup #popup_page {
+            width: 600px;
+            height: 600px;
+            background-color: #fff;
+            border: 1px solid #000;
+            position: absolute;
+            left: 18px;
+            padding: 20px;
+            display: none;
+        }
+        .close {
+            display: none;
+        }
+        .popup_img {
+            display: flex;
+            justify-content: center;
+        }
+        .popup_img img {
+            width: 300px;
+            padding-top: 10px;
+        }
+    </style>
+    <script>
+        function openPopup() {
+           document.getElementById("popup_page").style.display = "block";
+        }
+        function closePopup() {
+           document.getElementById("popup_page").style.display = "none";
+        }
+    </script>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card shadow-sm">
+                    <div class="popup">
+                        <div class="info">
+                            <img src="{{ url_for('static', filename='img/info.png') }}" alt="info" title="info" onclick="openPopup()">
+
+                        </div>
+                        <div id="popup_page">
+                            <p style="text-align: right; cursor: pointer;" onclick="closePopup()">X</p>
+
+                            <h3>설명</h3>
+                            <p>이 프로그램은 물체 이미지를 넣으면 그 물체를 어디에다가 분리를 해야하는지 알려주는 프로그램입니다. 이미지 파일을 업로드하고 '이미지를 분석하겠다 핑'을 클릭하면 어디에 분리해야 하는지 알려줍니다!</p>
+                            <div class="popup_img">
+                                <img src="{{ url_for('static', filename='img/싹싹핑.png') }}" alt="싹싹핑" title="싹싹핑">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">분리핑</h1>
+                        <div class="icon">
+                            <img src="{{ url_for('static', filename='img/icon1.jpg') }}" alt="icon" title="icon">
+                        </div>
+                        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">분리할 이미지를 넣어라핑</label>
+                                <input type="file" name="file" id="file" class="form-control" accept="image/*" onchange="loadImagePreview(event)">
+                            </div>
+                            <div class="mb-3 text-center">
+                                <!-- 이미지 미리보기 영역 -->
+                                <img id="preview" src="" alt="이미지 미리보기" class="img-fluid rounded" style="display: none; max-height: 400px;">
+                            </div>
+                            <div class="d-grid">
+                                <!-- 이미지 분석 버튼 -->
+                                <button type="submit" class="btn btn-primary">이미지 분석을 하겠다핑</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
