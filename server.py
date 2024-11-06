@@ -56,7 +56,7 @@ def predict():
         prediction = classifier.predict(image_features)
 
         # 클래스 리스트 (학습 시 사용한 클래스 목록에 맞게 수정)
-        classlist = ["binil", "cans", "glass", "other_ps", "pets"]
+        classlist = ["binil", "cans", "glass", "other_ps", "p_bowls", "pets"]
 
         # 예측 결과 가져오기
         result_index = prediction[0]
